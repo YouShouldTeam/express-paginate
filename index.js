@@ -33,10 +33,11 @@ exports.href = function href(req) {
     // allow overriding querystring params
     // (useful for sorting and filtering)
     // another alias for `_.assign` is `_.extend`
+      delete query.limit;
     if (_.isObject(params))
       query = _.assign(query, params);
 
-    return url.parse(req.originalUrl).pathname + '?' + querystring.stringify(query);
+    return (query.page === 2 && prev === true) ? url.parse(req.originalUrl).pathname : url.parse(req.originalUrl).pathname + '?' + querystring.stringify(query);
 
   };
 };
