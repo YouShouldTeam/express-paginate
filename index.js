@@ -20,9 +20,7 @@ exports.href = function href(req) {
     return function(prev, params) {
 
         var query = _.clone(req.query);
-        console.dir(query.page);
-        console.dir(prev);
-
+        
         if(query.page == 2 && prev == true)
             return url.parse(req.originalUrl).pathname;
 
